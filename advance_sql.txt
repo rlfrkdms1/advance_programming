@@ -1,0 +1,94 @@
+
+CREATE TABLE donation
+(
+	MPid                  VARCHAR(20)  NOT NULL ,
+	Oid                   VARCHAR(20)  NOT NULL ,
+	use_point             NUMBER  NOT NULL ,
+	inform                VARCHAR(70)  NULL 
+);
+
+
+
+CREATE UNIQUE INDEX XPKdonation ON donation
+(MPid  ASC,Oid  ASC,use_point  ASC);
+
+
+
+ALTER TABLE donation
+	ADD CONSTRAINT  XPKdonation PRIMARY KEY (MPid,Oid,use_point);
+
+
+
+CREATE TABLE Member_ad
+(
+	MPid                  VARCHAR(20)  NOT NULL ,
+	password              VARCHAR(20)  NULL ,
+	point                 NUMBER  NULL ,
+	M_name                VARCHAR(30)  NULL 
+);
+
+
+
+CREATE UNIQUE INDEX XPKMember_ad ON Member_ad
+(MPid  ASC);
+
+
+
+ALTER TABLE Member_ad
+	ADD CONSTRAINT  XPKMember_ad PRIMARY KEY (MPid);
+
+
+
+CREATE TABLE organization
+(
+	Oid                   VARCHAR(20)  NOT NULL ,
+	o_name                VARCHAR(20)  NULL ,
+	address               VARCHAR(30)  NULL ,
+	phone                 VARCHAR(30)  NULL ,
+	o_need_point          CHAR(18)  NULL ,
+	o_point               CHAR(18)  NULL 
+);
+
+
+
+CREATE UNIQUE INDEX XPKorganization ON organization
+(Oid  ASC);
+
+
+
+ALTER TABLE organization
+	ADD CONSTRAINT  XPKorganization PRIMARY KEY (Oid);
+
+
+
+CREATE TABLE talent
+(
+	MPid                  VARCHAR(20)  NOT NULL ,
+	talent_name           VARCHAR(30)  NOT NULL ,
+	time                  VARCHAR(30)  NULL 
+);
+
+
+
+CREATE UNIQUE INDEX XPKtalent ON talent
+(MPid  ASC,talent_name  ASC);
+
+
+
+ALTER TABLE talent
+	ADD CONSTRAINT  XPKtalent PRIMARY KEY (MPid,talent_name);
+
+
+
+ALTER TABLE donation
+	ADD (CONSTRAINT  R_1 FOREIGN KEY (MPid) REFERENCES Member_ad(MPid));
+
+
+
+ALTER TABLE donation
+	ADD (CONSTRAINT  R_2 FOREIGN KEY (Oid) REFERENCES organization(Oid));
+
+
+
+ALTER TABLE talent
+	ADD (CONSTRAINT  R_3 FOREIGN KEY (MPid) REFERENCES Member_ad(MPid));
