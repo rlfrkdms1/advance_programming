@@ -26,7 +26,7 @@
 									<%
 										String log;
 										String tmp_name="여러분";
-										if (session_id==null) log="<a href=login_a.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
+										if (session_id==null) log="<a href=login_check.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
 										if (session_id==null) tmp_name=session_name; else tmp_name="여러분";
 										
 									%>
@@ -161,9 +161,8 @@
 												<li><a href="mypage_a.jsp">회원정보 조회</a></li>
 												<li><a href="mypage_a.jsp">포인트 적립</a></li>
 												<li><a href="mypage_a.jsp">재능 등록</a></li>
-												<li><a href="mypage_a.jsp">공유 서류 조회</a></li>
 											</ul></li>
-										<li><a href="generic.html">기부 하기</a></li>
+										<li><a href="shared.jsp">공유 서류</a></li>
 										<li><a href="elements.html">재능 기부</a></li>
 									</ul>
 								</nav>
