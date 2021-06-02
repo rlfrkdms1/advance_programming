@@ -2,7 +2,11 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE HTML>
-
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 	<head>
 		<title>투명한 기부</title>
@@ -11,10 +15,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
-		<%
-		String session_id = (String)session.getAttribute("user");
-		String session_name  = (String)session.getAttribute("name");
-		%>
+
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Main -->
@@ -23,38 +24,20 @@
 
 							<!-- Header -->
 								<header id="header">
-									<%
-										String tmp_name;
-										String log;
-										if (session_id==null) log="<a href=login_check.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
-										if (session_id!=null) tmp_name=session_name; else tmp_name="여러분";
-										%>
-									<a href="index_a.jsp" class="logo"><strong>기부</strong> &nbsp'<%=tmp_name%>님의 투명한 기부 참여'</a>
-									<ul class="icons">
-										<li><%=log%></li>
-									</ul>
-									
+									<a href="index_a.jsp" class="logo"><strong>기부</strong> &nbsp'나만의 투명한 기부 참여'</a>
 								</header>
 
 
 							<!-- Banner -->
 								<section id="banner">
-									<div class="content">
-										<header>
-											<h2><font size="10">'No embezzlement donation'</font> </h2>
-											<h2><font size="5">투명한 기부하기</font> </h2>
-											<p>누구든지 물품, 포인트로 기부하는 </p>
-										</header>
-										<p>'투명한 기부 플랫폼'은 기존 기부 플랫폼은 현금으로 기부를 해서 기부받은 물품을 기부단체가 개인자산으로 횡령하는 사건이 많았고 그것으로 기부자들이 기부단체를 신뢰하지 못하는 문제가 발생하여 기부문화가 크게 위축되었다. 물품과 포인트를 통한 기부 방식을 통해서 기부를 받은 단체가 개인자산으로 횡령하는
-											것을 막고 공유문서를 통해 기부내역을 공개하여 청렴한 기부금 운영방식을 운영하여 기부자로부터 믿음을 얻어 기부자가 마음 높고 기부할 수 있는 기부문화를 구축한다.
-											</p>
-										<ul class="actions">
-											<li><a href="#" class="button big">더 알아보기</a></li>
+									<div class="col-6 col-12-small">
+										<ul class="actions stacked">
+											<li><a href="login_a.jsp"class="button primary fit">Donator</a></li>
+											<li><a href="login_a.jsp" class="button primary fit" >Donation organization </a></li>
 										</ul>
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
+                                      
+                                       
 								</section>
 						</div>
 					</div>
@@ -90,6 +73,7 @@
 										Seoul, Republic of Korea</li>
 									</ul>
 								</section>
+							<!-- Footer -->
 						</div>
 					</div>
 

@@ -26,7 +26,7 @@
 									<%
 										String log;
 										String tmp_name="여러분";
-										if (session_id==null) log="<a href=login_check.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
+										if (session_id==null) log="<a href=login_a.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
 										if (session_id==null) tmp_name=session_name; else tmp_name="여러분";
 										
 									%>
@@ -42,8 +42,10 @@
 								<section id="banner">
 									<div class="row">
 										<div class="col-12 col-2-medium">
-											<h4>회원 정보</h4>
 											<ul class="alt">
+                                                <div class="col-12 col-2-medium">
+                                                    <h4>포인트 공유 서류 조회</h4>
+                                                    <ul class="alt">
 												<%
 												Connection myConn = null; 
 												Statement stmt = null; 
@@ -62,83 +64,21 @@
 												}
 												stmt = myConn.createStatement();
 												ResultSet myResultSet;
-												mySQL= "SELECT  password,point FROM Member_ad WHERE MPid='" + session_id + "'";
+												mySQL= "SELECT  PRODUCTNAME, documentId, ORGNAME, o.POINT, o.oid FROM orgDocument d, organization o WHERE MPid='" + session_id + "' AND d.Oid=o.Oid";
 												myResultSet = stmt.executeQuery(mySQL);
+                                                int date=2;
 												if (myResultSet != null) {
 												while (myResultSet.next()) {
-												int point = myResultSet.getInt("point");
-												String password = myResultSet.getString("password");
-											%>
-												<li>이름: <%=session_name%> </li>
-												<li>e-mail: <%=session_id%> </li>
-												<li>password: <%=password%></li>
-											</ul>
-										</div>
-										
-										<div class="col-12 col-2-medium">
-											<h4>포인트 조회/충전</h4>
-											<FORM method="post" action="point_update.jsp"  align="left">
-											<ul class="alt">
-												<li>잔여 포인트: <%=point%> point</li> 
-												<li>충전 포인트 
-													<input type="text" name="points"  size=10 placeholder="충전 금액(원)">
-												</li>
-												<li> 
-													<th>
-														<select name="total" >
-															<option ></option>
-															<option value=<%=point%>>카드 결제</option>
-															<option value=<%=point%>>무통장 입금</option>
-															<option value=<%=point%>>계좌 이체</option>
-														</select> 
-													</th>
-												</li>
-												<%}}%>
-												<li><INPUT TYPE="SUBMIT" NAME="Submit" VALUE="payment"></li>
-											</ul>
-											</FORM>
-										</div>
-
-										<div class="col-12 col-2-medium">
-											<h4>재능 기부 조회/등록</h4>
-											<FORM method="post" action="talent_insert.jsp".jsp"  align="left">
-											<ul class="alt">
-												<%
-												mySQL= "SELECT talent_name, time from talent where Mpid='" + session_id + "'";
-												myResultSet = stmt.executeQuery(mySQL);
+                                                date++;
+												int use_point = myResultSet.getInt("point");
+												String o_name = myResultSet.getString("ORGNAME");
+												String PRODUCTNAME = myResultSet.getString("PRODUCTNAME");
+												String documentId = myResultSet.getString("documentId");
+												String oid = myResultSet.getString("oid");
 												
-												if (myResultSet != null) {
-												while (myResultSet.next()) {
-												String talent_name = myResultSet.getString("talent_name");
-												String time = myResultSet.getString("time");
-											    %>
-
-												<li><%=talent_name%> :  <%=time%></li>
-
-												<%}}%>
-
-												<li>재능 등록
-													<input type="text" name="talents"  size=10 placeholder="재능 입력">
-												</li>
-												<li>재능 기부 가능한 시간
-													<th>
-														<select name="time" >
-															<option ></option>
-															<option value="Week">week</option>
-															<option value="Weekend">weekend</option>
-															<option value="Week&Weekend">week/weekend</option>
-														</select> 
-													</th>
-												</li>
-												<li><INPUT TYPE="SUBMIT" NAME="Submit" VALUE="registration"></li>
-											</ul>
-											</FORM>
-										</div>
-
-										<div class="col-12 col-2-medium">
-											<h4>포인트 공유 서류 조회</h4>
-											<ul class="alt">
-												<li>사랑의 동산</li>
+											%>
+												<li><a href="shared_verify.jsp?oid=<%=oid%>&documentId=<%=documentId%>&PRODUCTNAME=<%=PRODUCTNAME%>&use_point=<%=use_point%>"><%=o_name%> <%=use_point%> pt</a> : 2021년 5월 <%=date%> 일</li>
+                                                <%}}%>
 											</ul>
 										</div>
 
@@ -146,7 +86,6 @@
 								</section>
 						</div>
 					</div>
-
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">

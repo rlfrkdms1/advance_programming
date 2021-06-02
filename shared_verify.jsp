@@ -2,7 +2,6 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE HTML>
-
 <html>
 	<head>
 		<title>투명한 기부</title>
@@ -14,7 +13,13 @@
 		<%
 		String session_id = (String)session.getAttribute("user");
 		String session_name  = (String)session.getAttribute("name");
-		%>
+        
+        String oid = request.getParameter("oid");
+        String PRODUCTNAME = request.getParameter("PRODUCTNAME");
+        String use_point = request.getParameter("use_point");
+        String documentId = request.getParameter("documentId");
+		%> 
+		<% if (session_id==null) response.sendRedirect("login_a.jsp"); %>
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Main -->
@@ -24,41 +29,42 @@
 							<!-- Header -->
 								<header id="header">
 									<%
-										String tmp_name;
 										String log;
-										if (session_id==null) log="<a href=login_check.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
-										if (session_id!=null) tmp_name=session_name; else tmp_name="여러분";
-										%>
-									<a href="index_a.jsp" class="logo"><strong>기부</strong> &nbsp'<%=tmp_name%>님의 투명한 기부 참여'</a>
+										String tmp_name="여러분";
+										if (session_id==null) log="<a href=login_a.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
+										if (session_id==null) tmp_name=session_name; else tmp_name="여러분";
+									%>
+									<a href="index_a.jsp" class="logo"><strong>기부</strong> &nbsp'<%=session_name%>의 투명한 기부 참여'</a>
 									<ul class="icons">
-										<li><%=log%></li>
+										<%=log%>
 									</ul>
 									
 								</header>
-
-
 							<!-- Banner -->
 								<section id="banner">
-									<div class="content">
-										<header>
-											<h2><font size="10">'No embezzlement donation'</font> </h2>
-											<h2><font size="5">투명한 기부하기</font> </h2>
-											<p>누구든지 물품, 포인트로 기부하는 </p>
-										</header>
-										<p>'투명한 기부 플랫폼'은 기존 기부 플랫폼은 현금으로 기부를 해서 기부받은 물품을 기부단체가 개인자산으로 횡령하는 사건이 많았고 그것으로 기부자들이 기부단체를 신뢰하지 못하는 문제가 발생하여 기부문화가 크게 위축되었다. 물품과 포인트를 통한 기부 방식을 통해서 기부를 받은 단체가 개인자산으로 횡령하는
-											것을 막고 공유문서를 통해 기부내역을 공개하여 청렴한 기부금 운영방식을 운영하여 기부자로부터 믿음을 얻어 기부자가 마음 높고 기부할 수 있는 기부문화를 구축한다.
-											</p>
-										<ul class="actions">
-											<li><a href="#" class="button big">더 알아보기</a></li>
-										</ul>
+									<div class="row">
+										<div class="col-12 col-2-medium">
+											<ul class="alt">
+                                                <div class="col-12 col-2-medium">
+                                                    <h4>포인트 공유 서류 조회</h4>
+                                                    <ul class="alt">
+									
+                                         
+                                                        단체명: <%=oid%> 
+                                                        <br>
+                                                        사용된 총 포인트: <%=use_point%> pt    
+                                                        <br>
+                                                        상세 내역: <%=PRODUCTNAME%>
+                            
+
+                                                
+											</ul>
+										</div>
+
 									</div>
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
 								</section>
 						</div>
 					</div>
-
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
@@ -90,6 +96,7 @@
 										Seoul, Republic of Korea</li>
 									</ul>
 								</section>
+							<!-- Footer -->
 						</div>
 					</div>
 
