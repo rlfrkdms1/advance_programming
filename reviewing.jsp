@@ -77,22 +77,26 @@ pageEncoding="UTF-8"%>
           <!-- Menu -->
           <nav id="menu">
             <header class="major">
-              <h2><a href="index.jsp">~~~~ donation</a></h2>
+              <h2><a href="index_a.jsp">PODO</a></h2>
             </header>
             <ul>
-              <li>
-                <span class="opener">MY PAGE</span>
+               <li><span class="opener">MY PAGE</span>
                 <ul>
-                  <li><a href="#">회원정보 조회</a></li>
-                  <li><a href="#">포인트 적립</a></li>
-                  <li><a href="#">재능 등록</a></li>
-                  <li><a href="#">공유 서류 조회</a></li>
-                </ul>
-              </li>
-              <li><a href="viewCorp2.jsp">기부 하기</a></li>
-              <li><a href="review.jsp">기부 후기</a></li>
+                 <li><a href="mypage_a.jsp">회원정보 조회</a></li>
+                 <li><a href="mypage_a.jsp">포인트 적립</a></li>
+                 <li><a href="mypage_a_jsp">재능 등록</a></li>
+                </ul></li>                              
+               
+               <li><span class="opener">기부 하기</span>
+                <ul>
+                 <li><a href="viewCorp2.jsp">물품 기부</a></li>
+                 <li><a href="point_view.jsp">포인트 기부</a></li>
+                </ul></li>   
+               <li><a href="review.jsp">후기 열람</a></li>
+               <li><a href="shared.jsp">공유 서류 조회</a></li>
             </ul>
-          </nav>
+           </nav>
+
 
           <section>
             <header class="major">
@@ -119,11 +123,11 @@ pageEncoding="UTF-8"%>
       var slider = document.getElementById("myRange");
       var output = document.getElementById("demo");
       output.innerHTML = slider.value;
-
       slider.oninput = function () {
         output.innerHTML = this.value;
       };
     </script>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>

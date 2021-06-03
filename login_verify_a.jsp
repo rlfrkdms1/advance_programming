@@ -4,8 +4,8 @@
 String userID = request.getParameter("email");
 String userPassword = request.getParameter("password");
 
-Connection myConn = null;
-Statement stmt = null;
+Connection myConn = null; 
+Statement stmt = null; 
 String mySQL = null;
 
 String driver="oracle.jdbc.driver.OracleDriver";
@@ -15,7 +15,7 @@ try{
      Class.forName(driver);
      myConn= DriverManager.getConnection(url,"ST2019112010" ,"ST2019112010" );
      connect=true;
-  }catch(Exception e){
+  }catch(Exception e){ 
     connect=false;
     out.print(e);
 }
@@ -23,19 +23,19 @@ try{
 stmt = myConn.createStatement();
 mySQL = "SELECT  MPid,password,M_name FROM Member_ad WHERE MPid='" + userID + "'AND password='" + userPassword +"'";
 String name;
-ResultSet myResultSet = stmt.executeQuery(mySQL);
+ResultSet myResultSet = stmt.executeQuery(mySQL); 
 if (myResultSet.next()) {
 name= myResultSet.getString("M_name");
 session.setAttribute("user", userID);
 session.setAttribute("name", name);
-response.sendRedirect("index_a.jsp");
-}
+response.sendRedirect("index_a.jsp"); 
+} 
 else {
-%>
+%> 
 <script>
 alert("사용자아이디 혹은 암호가 틀렸습니다");
 location.href = "login_a.jsp"; </script>
 <% }
 stmt.close();
-myConn.close();
+myConn.close(); 
 %>

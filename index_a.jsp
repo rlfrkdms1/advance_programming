@@ -41,7 +41,8 @@
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h2><font size="10">'No embezzlement donation'</font> </h2>
+											<h2><span style="color: #f56a6a">Po</span>int
+												<span style="color: #f56a6a">Do</span>nation </h2>
 											<h2><font size="5">투명한 기부하기</font> </h2>
 											<p>누구든지 물품, 포인트로 기부하는 </p>
 										</header>
@@ -63,21 +64,27 @@
 					<div id="sidebar">
 						<div class="inner">
 							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2><a href="index_a.jsp">NE donation</a></h2>
-									</header>
-									<ul>
-										<li><span class="opener">MY PAGE</span>
-											<ul>
-												<li><a href="mypage_a.jsp">회원정보 조회</a></li>
-												<li><a href="mypage_a.jsp">포인트 적립</a></li>
-												<li><a href="mypage_a.jsp">재능 등록</a></li>
-											</ul></li>
-										<li><a href="shared.jsp">공유 서류</a></li>
-										<li><a href="elements.html">재능 기부</a></li>
-									</ul>
-								</nav>
+							<nav id="menu">
+								<header class="major">
+								   <h2><a href="index_a.jsp">PODO</a></h2>
+								</header>
+								<ul>
+								   <li><span class="opener">MY PAGE</span>
+									  <ul>
+										 <li><a href="mypage_a.jsp">회원정보 조회</a></li>
+										 <li><a href="mypage_a.jsp">포인트 적립</a></li>
+										 <li><a href="mypage_a_jsp">재능 등록</a></li>
+									  </ul></li>                              
+								   
+								   <li><span class="opener">기부 하기</span>
+									  <ul>
+										 <li><a href="viewCorp2.jsp">물품 기부</a></li>
+										 <li><a href="point_view.jsp">포인트 기부</a></li>
+									  </ul></li>   
+								   <li><a href="review.jsp">후기 열람</a></li>
+								   <li><a href="shared.jsp">공유 서류 조회</a></li>
+								</ul>
+							 </nav>
 
 								<section>
 									<header class="major">

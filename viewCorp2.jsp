@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ page import="product.productVO" %>
-<%@ page import="product.productDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.*" %>
 
@@ -15,7 +13,6 @@
 %> 
 	
 
-<jsp:useBean id="product" class="product.productVO" scope="page" />
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -45,16 +42,29 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<header id="header">
-									<h1><a href="viewCorp2.jsp">기부가 필요한 단체</a></h1>
-									<ul class="icons">
-										<li><a href="Login.jsp"><span class="label">Login</span></a></li>
-										<li><a href="Login.jsp"><span class="label">Logout</span></a></li>
-									</ul>
-									
-								</header>
+							<header id="header">
+								<%
+								String session_id = (String)session.getAttribute("user");
+								String session_name  = (String)session.getAttribute("name");
+								
+								%> 
+								<% if (session_id==null) response.sendRedirect("login_a.jsp"); %>
 
-         <!-- Section -->
+								<%
+									String tmp_name;
+									String log;
+									if (session_id==null) log="<a href=login_check.jsp>log in</a>"; else log="<a href=logout.jsp>log out</a>";
+									if (session_id!=null) tmp_name=session_name; else tmp_name="여러분";
+									%>
+								<a href="index_a.jsp" class="logo"><strong>기부</strong> &nbsp'<%=tmp_name%>님의 투명한 기부 참여'</a>
+								<ul class="icons">
+									<li><%=log%></li>
+								</ul>
+								
+							</header>
+
+
+         <!-- Section
           <section>
             <header class="main">
               <button class="button primary large" onclick="productClick()">
@@ -65,7 +75,8 @@
                 </button>
             </header>
           </section>
-
+		 -->
+		 
           <section style="border-top: none" class="product">
             <div class="posts">
 		    
@@ -89,7 +100,7 @@
 					%>			
 					<article>
                		<a href="corpDetail.jsp?id=<%=rs.getString("oid")%>" class="image" id="images/vol1.jpg" onclick="get_src(this.id)">
-                	<img src="<%= result%>" alt=""/>
+					<img src="<%= result%>" width=500px height=280px/>
                 	</a>
 
                 	<h3><%=rs.getString("ORGNAME")%></h3>
@@ -126,26 +137,31 @@
         </div>
        
       </div>
-				<!-- Sidebar -->
+					<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
 							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2><a href="index.jsp">~~~~ donation</a></h2>
-									</header>
-									<ul>
-										<li><span class="opener">MY PAGE</span>
-											<ul>
-												<li><a href="#">회원정보 조회</a></li>
-												<li><a href="#">포인트 적립</a></li>
-												<li><a href="#">재능 등록</a></li>
-												<li><a href="#">공유 서류 조회</a></li>
-											</ul></li>										
-										<li><a href="viewCorp2.jsp">기부 하기</a></li>
-										<li><a href="review.jsp">후기 작성</a></li>
-									</ul>
-								</nav>
+							<nav id="menu">
+								<header class="major">
+								   <h2><a href="index_a.jsp">NE donation</a></h2>
+								</header>
+								<ul>
+								   <li><span class="opener">MY PAGE</span>
+									  <ul>
+										 <li><a href="mypage_a.jsp">회원정보 조회</a></li>
+										 <li><a href="mypage_a.jsp">포인트 적립</a></li>
+										 <li><a href="mypage_a_jsp">재능 등록</a></li>
+									  </ul></li>                              
+								   
+								   <li><span class="opener">기부 하기</span>
+									  <ul>
+										 <li><a href="viewCorp2.jsp">물품 기부</a></li>
+										 <li><a href="point_view.jsp">포인트 기부</a></li>
+									  </ul></li>   
+								   <li><a href="review.jsp">후기 열람</a></li>
+								   <li><a href="shared.jsp">공유 서류 조회</a></li>
+								</ul>
+							 </nav>
 
 								<section>
 									<header class="major">
@@ -158,10 +174,10 @@
 										Seoul, Republic of Korea</li>
 									</ul>
 								</section>
-							<!-- Footer -->
 						</div>
 					</div>
-					</div>
+
+			</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -169,6 +185,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-   			<script src="assets/js/apply.js"></script>
+
 	</body>
 </html>
